@@ -26,3 +26,8 @@ class Rental(models.Model):
     end_date = models.DateField()
     status = models.CharField(max_length=20, default='Reserved')
     
+class Invoice(models.Model):
+    rental = models.OneToOneField(Rental, on_delete=models.CASCADE)
+    date_issued = models.DateField(auto_now_add=True)
+    total_amount = models.DecimalField(max_digits=8, decimal_places=2)
+
