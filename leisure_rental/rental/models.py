@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.authmodels import AbstractUser
+from django.contrib.auth.models import AbstractUser
 
 USER_ROLES = (
     ('CUSTOMER', 'Customer'),
