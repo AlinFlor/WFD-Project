@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equipment List</title>
+</head>
+<body>
+    <h1>Available Equipment</h1>
+    <ul>
+      {% for equipment in equipments %}
+        <li>{{ equipment.name }} - {{ equipment.type }} - ${{ equipment.daily_rate }} per day</li>
+      {% empty %}
+        <li>No equipment available at the moment.</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>
