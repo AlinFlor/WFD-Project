@@ -1,0 +1,35 @@
+{% extends 'rental/base.html' %}
+{% block title %}Invoice #{{ invoice.id }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="text-center mb-4">🧾 Invoice #{{ invoice.id }}</h2>
+
+        <div class="mb-3">
+          <p><strong>Date Issued:</strong> {{ invoice.date_issued }}</p>
+          <p><strong>Total:</strong> €{{ invoice.total_amount }}</p>
+        </div>
+
+        <hr>
+
+        <h5 class="mb-3">Items</h5>
+        <ul class="list-group">
+          {% for item in invoice.items.all %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ item.description }}
+              <span>€{{ item.unit_price }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="mt-4 text-center">
+          <a href="{% url 'rental_history' %}" class="btn btn-outline-secondary">← Back to My Rentals</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

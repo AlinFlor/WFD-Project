@@ -1,0 +1,12 @@
+{% extends 'rental/base.html' %}
+{% block title %}Session Expired{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="display-4 text-warning">⚠️ Session Expired</h1>
+  <p class="lead text-muted">Your session might have timed out or there was a security token error.</p>
+  <a href="{% url 'login' %}" class="btn btn-warning mt-3">
+    🔐 Log In Again
+  </a>
+</div>
+{% endblock %}

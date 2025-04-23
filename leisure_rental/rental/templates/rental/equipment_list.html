@@ -1,16 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Equipment List</title>
-</head>
-<body>
-    <h1>Available Equipment</h1>
-    <ul>
-      {% for equipment in equipments %}
-        <li>{{ equipment.name }} - {{ equipment.type }} - ${{ equipment.daily_rate }} per day</li>
-      {% empty %}
-        <li>No equipment available at the moment.</li>
-      {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'rental/base.html' %}
+{% block title %}Equipment{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">📦 Available Equipment</h1>
+
+{% if equipments %}
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for equipment in equipments %}
+      <div class="col">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ equipment.name }}</h5>
+            <p class="card-text text-muted">{{ equipment.type }}</p>
+            <p class="card-text"><strong>€{{ equipment.daily_rate }}</strong> per day</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert alert-info">No equipment available at the moment.</div>
+{% endif %}
+
+<div class="mt-4 d-flex gap-2">
+  <a href="{% url 'reserve_equipment' %}" class="btn btn-primary">
+    ➕ Reserve Equipment
+  </a>
+  <a href="{% url 'rental_history' %}" class="btn btn-outline-secondary">
+    📋 My Rentals
+  </a>
+</div>
+{% endblock %}
