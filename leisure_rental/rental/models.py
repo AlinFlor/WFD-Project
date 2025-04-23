@@ -13,11 +13,13 @@ class Equipment(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=50)
     daily_rate = models.DecimalField(max_digits=6, decimal_places=2)
-    available = models. BooleanField(default=True)
+    available = models.BooleanField(default=True)
     condition = models.CharField(max_length=50)
-    
+    image = models.ImageField(upload_to='equipment_images/', blank=True, null=True)  # 👈 Add this
+
     def __str__(self):
         return self.name
+
     
 class Rental(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

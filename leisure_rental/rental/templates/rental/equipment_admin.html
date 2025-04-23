@@ -1,0 +1,57 @@
+{% extends 'rental/base.html' %}
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">🛠 Admin Panel – Equipment Management</h1>
+
+<div class="d-flex justify-content-end mb-3">
+  <a href="{% url 'add_equipment' %}" class="btn btn-success">
+    <i class="bi bi-plus-circle"></i> Add New Equipment
+  </a>
+</div>
+
+{% if equipments %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Rate (€/day)</th>
+          <th>Available</th>
+          <th>Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for equipment in equipments %}
+        <tr>
+          <td style="width: 120px;">
+            {% if equipment.image %}
+              <img src="{{ equipment.image.url }}" class="img-thumbnail" style="max-height: 80px;" alt="{{ equipment.name }}">
+            {% else %}
+              <img src="https://via.placeholder.com/100x80?text=No+Image" class="img-thumbnail" alt="No image">
+            {% endif %}
+          </td>
+          <td>{{ equipment.name }}</td>
+          <td>{{ equipment.type }}</td>
+          <td>€{{ equipment.daily_rate }}</td>
+          <td>
+            {% if equipment.available %}
+              <span class="badge bg-success">Yes</span>
+            {% else %}
+              <span class="badge bg-danger">No</span>
+            {% endif %}
+          </td>
+          <td>{{ equipment.condition }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="alert alert-info">No equipment found.</div>
+{% endif %}
+
+<a href="{% url 'equipment_list' %}" class="btn btn-outline-secondary mt-4">← Back to Equipment</a>
+{% endblock %}
