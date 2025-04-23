@@ -33,6 +33,10 @@ class Invoice(models.Model):
     date_issued = models.DateField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=8, decimal_places=2)
 
+    def __str__(self):
+        return f"Invoice #{self.id}"
+
+
 class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='items')
     description = models.CharField(max_length=200)
