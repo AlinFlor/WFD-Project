@@ -116,7 +116,7 @@ AUTH_USER_MODEL = 'rental.User'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / 'leisure_rental' / 'static',
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
