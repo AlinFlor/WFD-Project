@@ -1,13 +1,31 @@
 {% extends 'rental/base.html' %}
-{% block title %}Home{% endblock %}
+{% load static %}
+{% block title %}Welcome{% endblock %}
+{% block content %} 
+<style>
+  body {
+    background-image: url("{% static 'images/index_background.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
 
-{% block content %}
-<div class="text-center py-5">
-  <h1 class="display-4 mb-3">🎣 Welcome to the <strong>Leisure Equipment Rental System</strong></h1>
-  <p class="lead text-muted">Reserve and manage fishing rods, bikes, kayaks, and more – all in one place.</p>
+  .welcome-box {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+</style>
 
-  <a href="{% url 'equipment_list' %}" class="btn btn-primary btn-lg mt-4 px-4">
-    <i class="bi bi-box-arrow-in-right"></i> Browse Equipment
-  </a>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="welcome-box">
+    <h1 class="mb-4 display-5">🎣 Welcome to the <strong>Leisure Equipment Rental System</strong></h1>
+    <p class="lead mb-4">Reserve and manage fishing rods, bikes, kayaks, and more – all in one place.</p>
+    <a href="{% url 'equipment_list' %}" class="btn btn-primary btn-lg">
+      <i class="bi bi-box-arrow-in-right"></i> Browse Equipment
+    </a>
+  </div>
 </div>
 {% endblock %}

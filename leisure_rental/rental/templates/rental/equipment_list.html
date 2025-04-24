@@ -1,14 +1,21 @@
 {% extends 'rental/base.html' %}
+{% load static %}
 {% block title %}Equipment{% endblock %}
 
 {% block content %}
 <h1 class="mb-4">📦 Available Equipment</h1>
 
 {% if equipments %}
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for equipment in equipments %}
       <div class="col">
         <div class="card shadow-sm h-100">
+          {% if equipment.image %}
+            <img src="{{ equipment.image.url }}" class="card-img-top p-2 rounded" alt="{{ equipment.name }}" style="height: 180px; object-fit: contain;">
+          {% else %}
+            <img src="{% static 'images/no_image.png' %}" class="card-img-top p-2 rounded" alt="No image" style="height: 180px; object-fit: contain;">
+          {% endif %}
+
           <div class="card-body">
             <h5 class="card-title">{{ equipment.name }}</h5>
             <p class="card-text text-muted">{{ equipment.type }}</p>
